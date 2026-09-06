@@ -54,3 +54,5 @@ The available GitHub credential permits repository/Pages publication but lacks t
 For updates, commit the reviewed build outputs on main, push main, then run `scripts/publish-site.ps1` from a clean checkout with Node/npm and Git available. The helper tests/builds, checks for generated drift and publishes the public subtree without a force push. It never deploys Salesforce or changes the original NTE repository.
 
 The test runner discovers test files using Node rather than relying on shell wildcard expansion, so npm test works on Windows as well as Unix shells.
+
+The publishing helper was exercised successfully on Windows with Node 20.20.2: tests and build passed, the public subtree was already up to date, and the source working tree remained clean. The earlier fresh-archive check used source commit 843ba84 before the final test-runner addition.
