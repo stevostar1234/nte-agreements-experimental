@@ -39,6 +39,8 @@ Web-to-Lead redirects do not provide authenticated confirmation of Lead creation
 
 The current implementation exposes useful status/errors and a permission-gated retry for failed, unsent agreements. It does not install recurring monitoring or an automatic retry/reconciliation service. A PDF failure cannot legitimately reach the normal success-email stage; the spoofed-state insertion issue above concerns a separate trust boundary.
 
+The fresh branded test reached Inbox, but its received headers reported SPF pass and DMARC fail for the current user-based sender. Configure a client-controlled organisation-wide sender and aligned domain authentication before real delivery; the successful test does not establish general deliverability.
+
 ## Client decisions outside code
 
 Only Gold's benefits were supplied. Other selected package schedules and the paperwork deadline are intentionally blank. Prices are supplied values, not an approved future event catalogue. The Word template says no VAT; the source form said prices exclude VAT. The build follows the Word template, pending client confirmation. Terms are year-neutral but current event configuration/logistics still describe NTE2027 on 1 March 2027.

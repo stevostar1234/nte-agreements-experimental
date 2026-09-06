@@ -7,6 +7,7 @@ The supplied NTE partner/sponsor form, electronic signature capture, Salesforce-
 - [Technical walkthrough and presentation guide](docs/TECHNICAL-WALKTHROUGH.md)
 - [V1 functional issues — decisions pending](docs/V1-ISSUES.md)
 - [Exact metadata and field inventory](docs/METADATA.md)
+- [Verification results and test limits](docs/RELEASE-VERIFICATION.md)
 
 ## Team evaluation
 
