@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const root=new URL('../',import.meta.url);
+const template=fs.readFileSync(new URL('config/branded-email-template.html',root),'utf8');
+const resource=new URL('force-app/main/default/staticresources/',root);
+fs.writeFileSync(new URL('NTEAgreementEmail.resource',resource),template);
+fs.writeFileSync(new URL('NTEAgreementEmail.resource-meta.xml',resource),'<?xml version="1.0" encoding="UTF-8"?><StaticResource xmlns="http://soap.sforce.com/2006/04/metadata"><cacheControl>Private</cacheControl><contentType>text/html</contentType><description>NTE branded signed-agreement confirmation email.</description></StaticResource>');
+const example={organisation:'Horizon Mobility Ltd',packages:'Gold Partner',fee:'£15,000.00',signatory:'Alex Morgan',signedAt:'6 September 2026 at 22:33 BST',version:'NTE-PARTNER-1.0',reference:'NTE-EXAMPLE-AGREEMENT',email:'alex.morgan@example.com',eventCode:'NTE2027'};
+const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+const preview=template.replace(/\{\{([A-Za-z]+)\}\}/g,(_,key)=>{if(!(key in example))throw new Error('Unknown email token: '+key);return escape(example[key]);});
+fs.writeFileSync(new URL('public/email-preview.html',root),preview);
+console.log(JSON.stringify({resource:'NTEAgreementEmail',bytes:Buffer.byteLength(template),preview:'public/email-preview.html'}));

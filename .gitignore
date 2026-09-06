@@ -1,0 +1,13 @@
+.sf/
+.sfdx/
+artifacts/
+node_modules/
+org-baseline/
+org-config/
+.env
+.env.*
+*.log
+*.pid
+*.docx
+*.zip
+.DS_Store

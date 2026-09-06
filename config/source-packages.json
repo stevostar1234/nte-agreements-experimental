@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Headline Partner",
+    "fee": 30000
+  },
+  {
+    "name": "Gold Partner",
+    "fee": 15000
+  },
+  {
+    "name": "Premier Partner",
+    "fee": 7000
+  },
+  {
+    "name": "Champion Partner",
+    "fee": 2000
+  },
+  {
+    "name": "Zone Sponsor",
+    "fee": 5000
+  },
+  {
+    "name": "Community Stage Sponsor",
+    "fee": 6000
+  },
+  {
+    "name": "Podcast Corner Sponsor",
+    "fee": 6000
+  },
+  {
+    "name": "Event Guide Sponsor",
+    "fee": 5000
+  },
+  {
+    "name": "Delegate Tote Bag Sponsor",
+    "fee": 5000
+  },
+  {
+    "name": "Helmet Bay Sponsor",
+    "fee": 3000
+  },
+  {
+    "name": "Auditorium Sponsor",
+    "fee": 5000
+  },
+  {
+    "name": "Live Stream Sponsor",
+    "fee": 6000
+  },
+  {
+    "name": "Wristband Sponsor",
+    "fee": 3000
+  },
+  {
+    "name": "Escapade Sponsor",
+    "fee": 9000
+  }
+]

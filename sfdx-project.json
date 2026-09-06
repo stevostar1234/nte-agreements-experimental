@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "nte-agreements-experimental",
+  "namespace": "",
+  "sfdcLoginUrl": "https://megistos.my.salesforce.com",
+  "sourceApiVersion": "67.0"
+}

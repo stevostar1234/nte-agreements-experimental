@@ -1,0 +1,29 @@
+.agreement-summary {font-weight:650;color:var(--green,#244d3a);line-height:1.6}
+.agreement-review {margin:18px 0;border:1px solid #d4ded5;border-radius:10px;overflow:hidden}
+.agreement-review summary {padding:16px 18px;cursor:pointer;background:#f3f6f2;font-weight:650}
+.agreement-review summary:focus-visible {outline:3px solid #c39435;outline-offset:-3px}
+.agreement-preview {max-height:460px;overflow:auto;padding:22px;background:#fff;font-size:13px;line-height:1.6;overscroll-behavior:contain}
+.agreement-document h1 {font-size:24px;line-height:1.25;color:#244d3a}
+.agreement-document h2 {font-size:17px;margin-top:26px}
+.agreement-document h3 {font-size:15px;margin-top:20px}
+.agreement-document h4 {font-size:14px;margin:16px 0 8px}
+.agreement-document p {margin:10px 0}
+.benefits {width:100%;border-collapse:collapse}
+.benefits td {padding:8px 5px;border-bottom:1px solid #e2e7df;vertical-align:top}
+.benefits td:last-child {width:26%;font-weight:550}
+.blank-schedule {min-height:60px;border-bottom:1px solid #d8ded6}
+.audit {font-size:11px;color:#5d6b60;overflow-wrap:anywhere}
+.signature-field {margin-top:24px}
+.signature-surface {position:relative;background:#fff;border:1px solid #8d9f90;border-radius:10px;overflow:hidden;margin-top:10px}
+.signature-surface::before {content:'Sign here';position:absolute;inset:45% 0 auto;text-align:center;color:#87948a;font-size:16px;pointer-events:none}
+.signature-surface.has-ink::before {display:none}
+.signature-surface::after {content:'';position:absolute;left:6%;right:6%;bottom:24%;border-top:1px dashed #d4ded3;pointer-events:none}
+.signature-pad {display:block;width:100%;aspect-ratio:10/3;touch-action:none;user-select:none;-webkit-user-select:none;position:relative;z-index:1;cursor:crosshair}
+.signature-pad:focus-visible {outline:3px solid #b38b3c;outline-offset:-4px}
+.signature-tools {display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.signature-tools button {font:inherit;font-size:13px;padding:7px 13px;border:1px solid #b5c2b4;background:transparent;color:#284735;border-radius:6px;cursor:pointer}
+.signature-tools button:disabled {opacity:.4;cursor:default}
+.signature-tools button:not(:disabled):hover {background:#edf3eb}
+.signature-status {font-size:12px;color:#536456;min-height:20px;margin:7px 0 16px}
+.agreement-version {font-size:12px;color:#536456;margin:12px 0}
+@media(max-width:560px){.agreement-preview{padding:14px}.signature-surface{max-width:100%}}

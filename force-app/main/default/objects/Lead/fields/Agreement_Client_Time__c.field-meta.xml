@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Agreement_Client_Time__c</fullName><description>Records browser signing time for the auditable signed agreement workflow.</description><inlineHelpText>Managed by agreement processing; use the signature viewer to inspect the agreement.</inlineHelpText><label>Browser Signing Time</label><type>Text</type><length>30</length></CustomField>

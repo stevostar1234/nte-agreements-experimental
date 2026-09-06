@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Invoice_Additional_Information__c</fullName><description>Preserves the partner application value for invoice additional information.</description><inlineHelpText>Captured from the applicant form.</inlineHelpText><label>Invoice Additional Information</label><type>LongTextArea</type><length>32768</length><visibleLines>3</visibleLines></CustomField>

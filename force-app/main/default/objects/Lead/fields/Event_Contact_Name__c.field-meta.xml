@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Event_Contact_Name__c</fullName><description>Preserves the partner application value for event contact name.</description><inlineHelpText>Captured from the applicant form.</inlineHelpText><label>Event Contact Name</label><type>Text</type><length>200</length></CustomField>

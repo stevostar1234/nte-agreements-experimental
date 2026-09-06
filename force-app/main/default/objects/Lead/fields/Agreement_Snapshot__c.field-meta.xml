@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Agreement_Snapshot__c</fullName><description>Records signed agreement snapshot for the auditable signed agreement workflow.</description><inlineHelpText>Managed by agreement processing; use the signature viewer to inspect the agreement.</inlineHelpText><label>Signed Agreement Snapshot</label><type>LongTextArea</type><length>131072</length><visibleLines>3</visibleLines></CustomField>

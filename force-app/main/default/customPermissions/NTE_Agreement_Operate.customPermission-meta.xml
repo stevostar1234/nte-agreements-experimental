@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata"><description>Allows authorised staff to retry failed, unsent NTE agreements.</description><label>Operate NTE Agreements</label></CustomPermission>

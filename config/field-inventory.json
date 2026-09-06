@@ -1,0 +1,519 @@
+[
+  {
+    "name": "Logo_Upload_URL__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Logo Upload URL",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Web_Form_Type__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Web Form Type",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Form_Version__c",
+    "type": "Text",
+    "length": 80,
+    "label": "Form Version",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "NTE_Event_Code__c",
+    "type": "Text",
+    "length": 20,
+    "label": "NTE Event Code",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Booking_Reference__c",
+    "type": "Text",
+    "length": 80,
+    "label": "Booking Reference",
+    "source": "Existing partner form",
+    "unique": true
+  },
+  {
+    "name": "Sponsored_Name__c",
+    "type": "Text",
+    "length": 200,
+    "label": "Sponsored Name",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Event_Contact_Name__c",
+    "type": "Text",
+    "length": 200,
+    "label": "Event Contact Name",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Event_Contact_Title__c",
+    "type": "Text",
+    "length": 128,
+    "label": "Event Contact Title",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Event_Contact_Email__c",
+    "type": "Email",
+    "length": 80,
+    "label": "Event Contact Email",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Event_Contact_Mobile__c",
+    "type": "Phone",
+    "length": 40,
+    "label": "Event Contact Mobile",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Sponsor_Package_Total__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Sponsor Package Total",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Exhibitor_Space_Price__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Exhibitor Space Price",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Power_Socket_Unit_Price__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Power Socket Unit Price",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Power_Socket_Total__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Power Socket Total",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Additional_Staff_Unit_Price__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Additional Staff Unit Price",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Additional_Staff_Total__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Additional Staff Total",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Included_Staff_Count__c",
+    "type": "Number",
+    "length": 255,
+    "label": "Included Staff Count",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Total_Staff_Count__c",
+    "type": "Number",
+    "length": 255,
+    "label": "Total Staff Count",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Additional_Staff_Required__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Additional Staff Required",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Additional_Staff_Count__c",
+    "type": "Number",
+    "length": 255,
+    "label": "Additional Staff Count",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Listed_Price_Total__c",
+    "type": "Currency",
+    "length": 255,
+    "label": "Listed Price Total",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Pricing_Status__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Pricing Status",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Pricing_Version__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Pricing Version",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoice_Required__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Invoice Required",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Sponsor_Package__c",
+    "type": "MultiselectPicklist",
+    "length": 255,
+    "label": "Sponsor Package",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Exhibitor_Hall_Schedule__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Exhibitor Hall Schedule",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Stand_Power__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Stand Power",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Stand_Equipment__c",
+    "type": "LongTextArea",
+    "length": 1024,
+    "label": "Stand Equipment",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Heavy_Vehicle_Required__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Heavy Vehicle Required",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Has_Special_Requirements__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Has Special Requirements",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Stand_Special_Requirements__c",
+    "type": "LongTextArea",
+    "length": 1024,
+    "label": "Stand Special Requirements",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Planned_Exhibitor_Count__c",
+    "type": "Number",
+    "length": 255,
+    "label": "Planned Exhibitor Count",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Stand_Extra_Notes__c",
+    "type": "LongTextArea",
+    "length": 1024,
+    "label": "Stand Extra Notes",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Quote_Required_for_PO__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Quote Required for PO",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Payment_Method__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Payment Method",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Purchase_Order__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Purchase Order",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Purchase_Order_Number__c",
+    "type": "Text",
+    "length": 100,
+    "label": "Purchase Order Number",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Supplier_Agreement_Required__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Supplier Agreement Required",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoiced_Company__c",
+    "type": "Text",
+    "length": 200,
+    "label": "Invoiced Company",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Trading_Name__c",
+    "type": "Text",
+    "length": 255,
+    "label": "Trading Name",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoice_Address__c",
+    "type": "LongTextArea",
+    "length": 1024,
+    "label": "Invoice Address",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoiced_Person__c",
+    "type": "Text",
+    "length": 200,
+    "label": "Invoiced Person",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoiced_Email__c",
+    "type": "Email",
+    "length": 80,
+    "label": "Invoiced Email",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoice_Contact_Phone__c",
+    "type": "Phone",
+    "length": 40,
+    "label": "Invoice Contact Phone",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Invoice_Additional_Information__c",
+    "type": "LongTextArea",
+    "length": 32768,
+    "label": "Invoice Additional Information",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Declaration_Name__c",
+    "type": "Text",
+    "length": 200,
+    "label": "Declaration Name",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Declaration_Date__c",
+    "type": "Date",
+    "length": 255,
+    "label": "Declaration Date",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Terms_and_Conditions__c",
+    "type": "Checkbox",
+    "length": 255,
+    "label": "Terms and Conditions",
+    "source": "Existing partner form",
+    "unique": false
+  },
+  {
+    "name": "Signature_Vector__c",
+    "type": "LongTextArea",
+    "length": 32768,
+    "label": "Signature Vector",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Signature_PNG_Base64__c",
+    "type": "LongTextArea",
+    "length": 32768,
+    "label": "Signature PNG Transport",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Authority__c",
+    "type": "Checkbox",
+    "length": 0,
+    "label": "Authority Confirmed",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Accepted__c",
+    "type": "Checkbox",
+    "length": 0,
+    "label": "Agreement Accepted",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Version__c",
+    "type": "Text",
+    "length": 80,
+    "label": "Agreement Version",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Config_Hash__c",
+    "type": "Text",
+    "length": 64,
+    "label": "Agreement Configuration Hash",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Client_Time__c",
+    "type": "Text",
+    "length": 30,
+    "label": "Browser Signing Time",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Signed_At__c",
+    "type": "DateTime",
+    "length": 0,
+    "label": "Signed At",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Received_At__c",
+    "type": "DateTime",
+    "length": 0,
+    "label": "Agreement Received At",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Status__c",
+    "type": "Picklist",
+    "length": 0,
+    "label": "Agreement Status",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Error__c",
+    "type": "LongTextArea",
+    "length": 4000,
+    "label": "Agreement Processing Error",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Snapshot__c",
+    "type": "LongTextArea",
+    "length": 131072,
+    "label": "Signed Agreement Snapshot",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_SHA256__c",
+    "type": "Text",
+    "length": 64,
+    "label": "Agreement Evidence SHA256",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Signature_File__c",
+    "type": "Text",
+    "length": 18,
+    "label": "Signature File Version",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_PDF_File__c",
+    "type": "Text",
+    "length": 18,
+    "label": "Agreement PDF File Version",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_PDF_SHA256__c",
+    "type": "Text",
+    "length": 64,
+    "label": "Agreement PDF SHA256",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Email_Sent_At__c",
+    "type": "DateTime",
+    "length": 0,
+    "label": "Agreement Email Sent At",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Attempts__c",
+    "type": "Number",
+    "length": 0,
+    "label": "Agreement Processing Attempts",
+    "source": "Signature and agreement evidence"
+  },
+  {
+    "name": "Agreement_Job_Id__c",
+    "type": "Text",
+    "length": 18,
+    "label": "Agreement Processing Job",
+    "source": "Signature and agreement evidence"
+  }
+]

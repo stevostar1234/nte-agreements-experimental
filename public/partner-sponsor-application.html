@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NTE27 Partner / Sponsor Application</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;550;650;750;800&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/styles.css?v=20260906-1">
+  <link rel="stylesheet" href="assets/agreement.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav"><a class="brand" href="https://www.nationaltransitionevent.com/"><img class="brand-logo" src="assets/nte-logo-white.png" alt="The National Transition Event"></a><a class="nav-link" href="https://www.nationaltransitionevent.com/">nationaltransitionevent.com</a></nav>
+    <div class="hero"><h1>Partner / sponsor application</h1></div>
+  </header>
+
+  <main class="page-shell">
+    <form class="main-column" data-web-to-lead data-return-path="thank-you.html" data-lead-source="Customer Event" data-use-default-rule="0" data-confirmation-preview="Thank you. We have received your NTE27 partnership / sponsorship application. The NTE team will review it and contact you with the outcome.">
+      <input type="hidden" data-sf-field="Logo_Upload_URL__c">
+      <input type="hidden" value="Partner / Sponsor Application" data-sf-field="Web_Form_Type__c">
+      <input type="hidden" value="partner-sponsor-agreement-v1" data-sf-field="Form_Version__c">
+      <input type="hidden" data-sf-field="NTE_Event_Code__c">
+      <input type="hidden" data-sf-field="Booking_Reference__c">
+      <input type="hidden" data-combine-fields="partner-first-name,partner-last-name" data-sf-field="Sponsored_Name__c">
+      <input type="hidden" data-switch-copy="partner-day-contact-same" data-copy-when-yes="partner-first-name,partner-last-name" data-copy-when-no="partner-day-first-name,partner-day-last-name" data-copy-mode="combine" data-sf-field="Event_Contact_Name__c">
+      <input type="hidden" data-switch-copy="partner-day-contact-same" data-copy-when-yes="partner-title" data-copy-when-no="partner-day-title" data-sf-field="Event_Contact_Title__c">
+      <input type="hidden" data-switch-copy="partner-day-contact-same" data-copy-when-yes="partner-email" data-copy-when-no="partner-day-email" data-sf-field="Event_Contact_Email__c">
+      <input type="hidden" data-switch-copy="partner-day-contact-same" data-copy-when-yes="partner-phone" data-copy-when-no="partner-day-mobile" data-sf-field="Event_Contact_Mobile__c">
+      <input type="hidden" value="0" data-sf-field="Sponsor_Package_Total__c">
+      <input type="hidden" value="0" data-sf-field="Exhibitor_Space_Price__c">
+      <input type="hidden" value="0" data-sf-field="Power_Socket_Unit_Price__c">
+      <input type="hidden" value="0" data-sf-field="Power_Socket_Total__c">
+      <input type="hidden" value="0" data-sf-field="Additional_Staff_Unit_Price__c">
+      <input type="hidden" value="0" data-sf-field="Additional_Staff_Total__c">
+      <input type="hidden" value="0" data-sf-field="Included_Staff_Count__c">
+      <input type="hidden" data-copy-value-from="partner-planned-count" data-sf-field="Total_Staff_Count__c">
+      <input type="hidden" value="No" data-sf-field="Additional_Staff_Required__c">
+      <input type="hidden" value="0" data-sf-field="Additional_Staff_Count__c">
+      <input type="hidden" value="0" data-sf-field="Listed_Price_Total__c">
+      <input type="hidden" value="Calculated" data-sf-field="Pricing_Status__c">
+      <input type="hidden" value="NTE27-2026-09-06" data-sf-field="Pricing_Version__c">
+      <input type="hidden" value="Yes" data-sf-field="Invoice_Required__c">
+
+      <section class="card"><h2>About NTE27</h2><p class="lede">NTE27 returns to The Wing at Silverstone on Monday 1 March 2027, following an event that welcomed more than 1,200 members of the Armed Forces community, over 200 exhibiting organisations and more than 100 Troops' Track Day supercars. Delivered by Mission Community and Mission Motorsport, the National Transition Event is the largest annual gathering of the UK Armed Forces community. Incorporating the Troops' Track Day, it brings together Service Leavers, Veterans, Reservists, spouses and partners, family members and Cadets with Armed Forces-friendly companies, government agencies and charities to exchange insight, lived experience and career opportunities. Unlike a traditional Jobs Fair, NTE27 is designed for meaningful networking, collaboration and lasting relationships.</p></section>
+
+      <section class="card">
+        <h2><span class="section-number">1</span>Organisation and applicant</h2>
+        <div class="grid">
+          <div class="field full"><label class="required" for="partner-company">Organisation name as it should appear in marketing</label><input id="partner-company" required autocomplete="organization" data-sf-field="Company"></div>
+          <div class="field"><label class="required" for="partner-first-name">First name</label><input id="partner-first-name" required autocomplete="given-name" data-sf-field="FirstName"></div>
+          <div class="field"><label class="required" for="partner-last-name">Surname</label><input id="partner-last-name" required autocomplete="family-name" data-sf-field="LastName"></div>
+          <div class="field"><label class="required" for="partner-title">Job title</label><input id="partner-title" required autocomplete="organization-title" data-sf-field="Title"></div>
+          <div class="field"><label class="required" for="partner-email">Contact email</label><input id="partner-email" type="email" required autocomplete="email" data-sf-field="Email"></div>
+          <div class="field"><label class="required" for="partner-phone">Contact telephone</label><input id="partner-phone" type="tel" required autocomplete="tel" data-sf-field="Phone"><span class="help">Please provide a mobile number if you will also be the on-the-day contact.</span></div>
+          <div class="field full"><label class="required" for="partner-day-contact-same">Will the applicant be the main contact on the day of NTE27?</label><select id="partner-day-contact-same" required><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+        </div>
+        <div class="conditional" data-conditional-for="partner-day-contact-same" data-conditional-value="No">
+          <h3>Contact on the day of NTE27</h3>
+          <div class="grid">
+            <div class="field"><label class="required" for="partner-day-first-name">First name</label><input id="partner-day-first-name" maxlength="40" data-required-when-visible autocomplete="given-name"></div>
+            <div class="field"><label class="required" for="partner-day-last-name">Surname</label><input id="partner-day-last-name" maxlength="80" data-required-when-visible autocomplete="family-name"></div>
+            <div class="field"><label class="required" for="partner-day-title">Job title</label><input id="partner-day-title" maxlength="128" data-required-when-visible></div>
+            <div class="field"><label class="required" for="partner-day-email">Email address</label><input id="partner-day-email" type="email" maxlength="80" data-required-when-visible></div>
+            <div class="field"><label class="required" for="partner-day-mobile">Mobile phone number</label><input id="partner-day-mobile" type="tel" maxlength="40" data-required-when-visible></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="section-number">2</span>Packages</h2>
+        <p>Select all agreed packages. Your exhibitor space is included in the package price. All package benefits are listed in the NTE27 Partner and Sponsor Brochure.</p>
+        <div class="options-list" data-required-checkbox-group data-required-message="Please select at least one package.">
+          <label class="choice package-option"><span><input type="checkbox" value="Headline Partner" data-package-price="30000" data-sf-field="Sponsor_Package__c"> Headline Partner</span><span class="price">£30,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Gold Partner" data-package-price="15000" data-sf-field="Sponsor_Package__c"> Gold Partner</span><span class="price">£15,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Premier Partner" data-package-price="7000" data-sf-field="Sponsor_Package__c"> Premier Partner</span><span class="price">£7,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Champion Partner" data-package-price="2000" data-sf-field="Sponsor_Package__c"> Champion Partner</span><span class="price">£2,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Zone Sponsor" data-package-price="5000" data-sf-field="Sponsor_Package__c"> Zone Sponsor</span><span class="price">£5,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Community Stage Sponsor" data-package-price="6000" data-sf-field="Sponsor_Package__c"> Community Stage Sponsor</span><span class="price">£6,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Podcast Corner Sponsor" data-package-price="6000" data-sf-field="Sponsor_Package__c"> Podcast Corner Sponsor</span><span class="price">£6,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Event Guide Sponsor" data-package-price="5000" data-sf-field="Sponsor_Package__c"> Event Guide Sponsor</span><span class="price">£5,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Delegate Tote Bag Sponsor" data-package-price="5000" data-sf-field="Sponsor_Package__c"> Delegate Tote Bag Sponsor</span><span class="price">£5,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Helmet Bay Sponsor" data-package-price="3000" data-sf-field="Sponsor_Package__c"> Helmet Bay Sponsor</span><span class="price">£3,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Auditorium Sponsor" data-package-price="5000" data-sf-field="Sponsor_Package__c"> Auditorium Sponsor</span><span class="price">£5,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Live Stream Sponsor" data-package-price="6000" data-sf-field="Sponsor_Package__c"> Live Stream Sponsor</span><span class="price">£6,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Wristband Sponsor" data-package-price="3000" data-sf-field="Sponsor_Package__c"> Wristband Sponsor</span><span class="price">£3,000</span></label>
+          <label class="choice package-option"><span><input type="checkbox" value="Escapade Sponsor" data-package-price="9000" data-sf-field="Sponsor_Package__c"> Escapade Sponsor</span><span class="price">£9,000</span></label>
+        </div>
+        <div class="callout"><strong data-package-count>No packages selected</strong><p class="estimate" data-package-total>£0</p><span class="help">No VAT will be charged.</span></div>
+      </section>
+
+      <section class="card">
+        <h2><span class="section-number">3</span>Exhibition space</h2>
+        <div class="grid">
+          <div class="field"><label class="required" for="partner-sunday">Can you set up between 14:00 and 18:00 on Sunday 28 February 2027 if your stand requires it?</label><select id="partner-sunday" required data-sf-field="Exhibitor_Hall_Schedule__c"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+          <div class="field"><label class="required" for="partner-power">Will you require power on your stand?</label><select id="partner-power" required data-sf-field="Stand_Power__c"><option value="">Select</option><option>Yes</option><option>No</option></select><span class="help">There is no additional charge for this partner/sponsor request.</span></div>
+          <div class="field full"><label class="required" for="partner-equipment">Equipment beyond display stands and laptops</label><textarea id="partner-equipment" required placeholder="State None if nothing further" data-sf-field="Stand_Equipment__c"></textarea></div>
+          <div class="field full"><label class="required" for="partner-heavy-vehicle">Will you bring cars, tractors or heavy items that need to be dropped off on a flatbed or trailer?</label><select id="partner-heavy-vehicle" required data-sf-field="Heavy_Vehicle_Required__c"><option value="">Select</option><option>Yes</option><option>No</option><option>Not known yet</option></select><div class="callout">Mission Community will send the separate Heavy Vehicle, Equipment and Haulier form nearer the event.</div></div>
+          <div class="field"><label class="required" for="partner-accessibility">Do you have any accessibility requirements?</label><select id="partner-accessibility" required data-sf-field="Has_Special_Requirements__c"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+          <div class="field conditional" data-conditional-for="partner-accessibility" data-conditional-value="Yes"><label class="required" for="partner-accessibility-details">Accessibility details</label><textarea id="partner-accessibility-details" data-required-when-visible data-sf-field="Stand_Special_Requirements__c"></textarea></div>
+          <div class="field"><label class="required" for="partner-planned-count">How many people do you currently plan to bring, including yourself?</label><input id="partner-planned-count" type="number" min="1" max="99" step="1" inputmode="numeric" required data-sf-field="Planned_Exhibitor_Count__c"><span class="help">There is no additional staff charge for partners and sponsors. You will provide the final names nearer the event.</span></div>
+          <div class="field full"><label class="required" for="partner-extra-notes">Anything else to share about your space?</label><textarea id="partner-extra-notes" required placeholder="State None if there is nothing further" data-sf-field="Stand_Extra_Notes__c"></textarea></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="section-number">4</span>Quotation and invoicing</h2>
+        <div class="grid">
+          <div class="field"><label class="required" for="partner-quote">Do you require a quotation before an invoice can be raised?</label><select id="partner-quote" required data-sf-field="Quote_Required_for_PO__c"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+          <div class="field" data-partner-payment-method-field><label class="required" for="partner-payment-method">Do you require an invoice to be raised, or will you make payment by Stripe?</label><select id="partner-payment-method" required data-sf-field="Payment_Method__c"><option value="">Select</option><option value="Bank transfer">Yes — invoice and payment by bank transfer</option><option value="Stripe">No — payment will be via Stripe</option></select></div>
+          <div class="field full"><label class="required" for="partner-po">Do you require a purchase order or reference before an invoice can be issued?</label><select id="partner-po" required data-sf-field="Purchase_Order__c"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+          <div class="field full conditional" data-conditional-for="partner-po" data-conditional-value="Yes"><label class="required" for="partner-po-number">Purchase order or reference details</label><input id="partner-po-number" data-required-when-visible data-sf-field="Purchase_Order_Number__c"></div>
+          <div class="field"><label class="required" for="partner-supplier-agreement">Will a supplier agreement be required?</label><select id="partner-supplier-agreement" required data-sf-field="Supplier_Agreement_Required__c"><option value="">Select</option><option>Yes</option><option>No</option><option>Don't know</option></select></div>
+          <div class="field"><label class="required" for="partner-invoice-company">Legal organisation name for quotation and invoicing</label><input id="partner-invoice-company" required data-sf-field="Invoiced_Company__c"></div>
+          <div class="field"><label for="partner-trading-name">Trading name, if different</label><input id="partner-trading-name" data-sf-field="Trading_Name__c"></div>
+          <div class="field full"><label class="required" for="partner-invoice-address">Billing address, including postcode</label><textarea id="partner-invoice-address" required data-sf-field="Invoice_Address__c"></textarea></div>
+          <div class="field full"><p class="help"><strong>Please provide the finance contact below — this should be different to the main contact.</strong> The main NTE contact is captured in section 1.</p></div>
+          <div class="field"><label class="required" for="partner-invoice-person">Finance contact name</label><input id="partner-invoice-person" required data-sf-field="Invoiced_Person__c"></div>
+          <div class="field"><label class="required" for="partner-invoice-email">Finance contact email address</label><input id="partner-invoice-email" type="email" required data-sf-field="Invoiced_Email__c"></div>
+          <div class="field"><label class="required" for="partner-invoice-phone">Finance contact telephone number</label><input id="partner-invoice-phone" type="tel" required data-sf-field="Invoice_Contact_Phone__c"></div>
+          <div class="field full"><label class="required" for="partner-invoice-additional-required">Is there any additional information that must appear on the quotation or invoice?</label><select id="partner-invoice-additional-required" required><option value="">Select</option><option>Yes</option><option>No</option></select></div>
+          <div class="field full conditional" data-conditional-for="partner-invoice-additional-required" data-conditional-value="Yes"><label class="required" for="partner-invoice-additional-information">Additional quotation or invoice information</label><textarea id="partner-invoice-additional-information" data-required-when-visible data-sf-field="Invoice_Additional_Information__c"></textarea></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2><span class="section-number">5</span>Agreement and signature</h2>
+        <p class="agreement-summary" data-agreement-summary></p>
+        <details class="agreement-review"><summary>Read your agreement</summary><div class="agreement-preview" data-agreement-preview tabindex="0" aria-label="Agreement terms"></div></details>
+        <p class="agreement-version" data-agreement-version></p>
+        <div class="grid">
+          <div class="field"><label class="required" for="partner-declaration-name">Signatory full legal name</label><input id="partner-declaration-name" required autocomplete="name" data-sf-field="Declaration_Name__c"><span class="help">Enter the full legal name of the person signing for your organisation.</span></div>
+          <div class="field"><label class="required" for="partner-declaration-date">Date</label><input id="partner-declaration-date" type="date" required data-sf-field="Declaration_Date__c"></div>
+        </div>
+        <div class="checkline"><input id="partner-terms" type="checkbox" required data-sf-field="Terms_and_Conditions__c"><label for="partner-terms">I have read and agree to the <a data-config-link="terms" target="_blank" rel="noopener">NTE27 Terms and Conditions and Privacy Policy</a>.</label></div>
+<div class="checkline"><input id="partner-authority" type="checkbox" value="1" required data-sf-field="Agreement_Authority__c"><label for="partner-authority">I confirm that I am authorised to enter into this agreement on behalf of the organisation named above.</label></div>
+        <div class="checkline"><input id="partner-agreement-acceptance" type="checkbox" value="1" required data-sf-field="Agreement_Accepted__c"><label for="partner-agreement-acceptance">I have read and accept this agreement, including the selected packages, fees and Schedule, and intend my drawn signature to sign it electronically.</label></div>
+        <div class="signature-field">
+          <label class="required" id="signature-label">Draw your signature</label><p class="help" id="signature-instructions">Use your mouse, finger or pen. You can lift and continue for each part of your signature.</p>
+          <p data-signature-loading role="status">Loading the signature pad…</p>
+          <div data-signature-controls hidden><div class="signature-surface"><svg class="signature-pad" data-signature-pad viewBox="0 0 600 180" tabindex="0" role="img" aria-labelledby="signature-label" aria-describedby="signature-instructions"></svg></div>
+          <div class="signature-tools"><button type="button" data-signature-undo>Undo</button><button type="button" data-signature-redo>Redo</button><button type="button" data-signature-clear>Clear signature</button></div></div>
+          <p class="signature-status" data-signature-status aria-live="polite">Draw your signature in the box.</p>
+        </div>
+        <input type="hidden" data-sf-field="Signature_Vector__c">
+        <input type="hidden" data-sf-field="Signature_PNG_Base64__c">
+        <input type="hidden" data-sf-field="Agreement_Version__c">
+        <input type="hidden" data-sf-field="Agreement_Config_Hash__c">
+        <input type="hidden" data-sf-field="Agreement_Client_Time__c">
+        <noscript><p>JavaScript is required to draw and submit your signature. Please enable it and reload this page.</p></noscript>
+        <div class="button-row"><button class="button" type="submit">Submit partner / sponsor application</button><a class="button-secondary" href="https://www.nationaltransitionevent.com/">Visit the NTE website</a></div><div data-form-status hidden aria-live="polite"></div>
+      </section>
+    </form>
+  </main>
+  <footer class="site-footer">Questions? <a href="mailto:nte@missioncommunity.org">nte@missioncommunity.org</a></footer>
+    <script src="assets/config.js?v=20260906-1"></script><script src="assets/forms.js?v=20260906-1"></script>
+<script src="assets/agreement-bundle.js"></script><script type="module" src="assets/agreement.js"></script>
+</body>
+</html>

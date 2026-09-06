@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Quote_Required_for_PO__c</fullName><description>Preserves the partner application value for quote required for po.</description><inlineHelpText>Captured from the applicant form.</inlineHelpText><label>Quote Required for PO</label><type>Text</type><length>255</length></CustomField>

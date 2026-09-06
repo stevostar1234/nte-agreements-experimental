@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides><actionName>View</actionName><content>NTE_Agreement_Record</content><formFactor>Large</formFactor><skipRecordTypeSelect>false</skipRecordTypeSelect><type>Flexipage</type><pageOrSobjectType>Lead</pageOrSobjectType></actionOverrides>
+    <actionOverrides><actionName>View</actionName><content>NTE_Agreement_Record</content><formFactor>Small</formFactor><skipRecordTypeSelect>false</skipRecordTypeSelect><type>Flexipage</type><pageOrSobjectType>Lead</pageOrSobjectType></actionOverrides>
+    <brand><headerColor>#183D30</headerColor><shouldOverrideOrgTheme>true</shouldOverrideOrgTheme></brand>
+    <description>Review partner applications, signed agreements and processing status.</description>
+    <formFactors>Large</formFactors><formFactors>Small</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled><isNavPersonalizationDisabled>false</isNavPersonalizationDisabled><isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <label>NTE Agreements</label><navType>Standard</navType>
+    <tabs>standard-Lead</tabs><tabs>standard-ContentNote</tabs><tabs>standard-File</tabs><uiType>Lightning</uiType>
+</CustomApplication>

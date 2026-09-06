@@ -1,0 +1,1 @@
+{"name":"nte-agreements-experimental","version":"1.1.0","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.mjs","build":"node scripts/build-agreement.mjs && node scripts/build-local.mjs && node scripts/build-email.mjs"},"license":"UNLICENSED"}

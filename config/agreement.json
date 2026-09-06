@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "version": "NTE-PARTNER-1.0",
+  "resourceName": "NTEAgreementBundleV1",
+  "event": {
+    "code": "NTE2027",
+    "name": "National Transition Event",
+    "eventDate": "2027-03-01",
+    "venue": "The Wing, Silverstone, Towcester, Northamptonshire, NN12 8TN",
+    "organiser": "Mission Motorsport / Mission Community",
+    "noticeEmail": "nte@missioncommunity.org",
+    "paperworkDeadline": ""
+  },
+  "taxText": "No VAT will be charged.",
+  "paymentText": "The Sponsorship Fee is payable in full within 30 days of signing this Agreement and on receipt of the Organiser’s invoice.",
+  "packages": [
+    {
+      "name": "Headline Partner",
+      "fee": 30000,
+      "benefits": []
+    },
+    {
+      "name": "Gold Partner",
+      "fee": 15000,
+      "benefits": [
+        {
+          "heading": "Before the event",
+          "items": [
+            [
+              "Partnership announcement social media post",
+              "Individual post"
+            ],
+            [
+              "Dedicated company story and social media posts",
+              "Included"
+            ],
+            [
+              "Dedicated individual Armed Forces community member story post",
+              "Included"
+            ],
+            [
+              "Partner logo montage on NTE website homepage with URL link",
+              "Included"
+            ],
+            [
+              "Reserved complimentary tickets for Sunday Night Party at Escapade",
+              "6"
+            ]
+          ]
+        },
+        {
+          "heading": "During the event",
+          "items": [
+            [
+              "Exhibitor stand space included in location of choice",
+              "Very large stand"
+            ],
+            [
+              "Thanked in speeches",
+              "Included"
+            ],
+            [
+              "Branding placements",
+              "Gold banner in your hall"
+            ],
+            [
+              "Partnership included in the event guide and PDF circulated to registered attendees and exhibitors before the event",
+              "Included"
+            ],
+            [
+              "Advert in event guide",
+              "Full page"
+            ],
+            [
+              "Team tickets to attend NTE on the stand with lunch vouchers",
+              "10"
+            ],
+            [
+              "Event Partner Recognition Certificate for displaying on the stand",
+              "Included"
+            ],
+            [
+              "GP circuit passenger rides for staff",
+              "10"
+            ]
+          ]
+        },
+        {
+          "heading": "After the event",
+          "items": [
+            [
+              "Post-event social media thank you",
+              "Included"
+            ],
+            [
+              "Downloadable link to professional images and video",
+              "Included"
+            ],
+            [
+              "Partnership remains on NTE website",
+              "10 months"
+            ],
+            [
+              "Social Value Report on event community impact",
+              "Included"
+            ],
+            [
+              "Armed Forces advocacy evidence for ERS awards/revalidation",
+              "Included"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Premier Partner",
+      "fee": 7000,
+      "benefits": []
+    },
+    {
+      "name": "Champion Partner",
+      "fee": 2000,
+      "benefits": []
+    },
+    {
+      "name": "Zone Sponsor",
+      "fee": 5000,
+      "benefits": []
+    },
+    {
+      "name": "Community Stage Sponsor",
+      "fee": 6000,
+      "benefits": []
+    },
+    {
+      "name": "Podcast Corner Sponsor",
+      "fee": 6000,
+      "benefits": []
+    },
+    {
+      "name": "Event Guide Sponsor",
+      "fee": 5000,
+      "benefits": []
+    },
+    {
+      "name": "Delegate Tote Bag Sponsor",
+      "fee": 5000,
+      "benefits": []
+    },
+    {
+      "name": "Helmet Bay Sponsor",
+      "fee": 3000,
+      "benefits": []
+    },
+    {
+      "name": "Auditorium Sponsor",
+      "fee": 5000,
+      "benefits": []
+    },
+    {
+      "name": "Live Stream Sponsor",
+      "fee": 6000,
+      "benefits": []
+    },
+    {
+      "name": "Wristband Sponsor",
+      "fee": 3000,
+      "benefits": []
+    },
+    {
+      "name": "Escapade Sponsor",
+      "fee": 9000,
+      "benefits": []
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Purchase_Order__c</fullName><description>Preserves the partner application value for purchase order.</description><inlineHelpText>Captured from the applicant form.</inlineHelpText><label>Purchase Order</label><type>Text</type><length>255</length></CustomField>

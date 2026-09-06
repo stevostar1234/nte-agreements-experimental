@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Invoiced_Person__c</fullName><description>Preserves the partner application value for invoiced person.</description><inlineHelpText>Captured from the applicant form.</inlineHelpText><label>Invoiced Person</label><type>Text</type><length>200</length></CustomField>

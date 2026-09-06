@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata"><fullName>Power_Socket_Unit_Price__c</fullName><description>Preserves the partner application value for power socket unit price.</description><inlineHelpText>Captured from the applicant form.</inlineHelpText><label>Power Socket Unit Price</label><type>Currency</type><precision>18</precision><scale>2</scale></CustomField>

@@ -1,0 +1,22 @@
+<template>
+  <lightning-card title="Signed agreement" icon-name="standard:contract">
+    <div slot="actions" class="actions">
+      <template lwc:if={pdfUrl}><a class="slds-button slds-button_neutral" href={pdfUrl} target="_blank" rel="noopener">Open PDF</a></template>
+      <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh agreement" onclick={refresh} disabled={busy}></lightning-button-icon>
+    </div>
+    <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+      <template lwc:if={loadError}><p class="slds-text-color_error" role="alert">{loadError}</p></template>
+      <template lwc:if={hasAgreement}>
+        <template lwc:if={pdfUrl}>
+          <iframe class="document" src={previewUrl} title="Signed partnership agreement PDF"></iframe>
+          <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">Browse, download or print using the document toolbar.</p>
+        </template>
+        <template lwc:if={isPreparing}><p>The signed agreement is being prepared.</p></template>
+        <template lwc:if={processingError}><p class="slds-text-color_error slds-m-top_small" role="alert">{processingError}</p></template>
+        <template lwc:if={canRetry}><lightning-button class="slds-m-top_small" label="Retry agreement processing" onclick={retry} disabled={busy}></lightning-button></template>
+      </template>
+      <template lwc:else><p>No signed agreement is recorded for this Lead.</p></template>
+      <template lwc:if={busy}><lightning-spinner alternative-text="Updating agreement" size="small"></lightning-spinner></template>
+    </div>
+  </lightning-card>
+</template>

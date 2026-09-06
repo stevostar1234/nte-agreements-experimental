@@ -1,0 +1,1 @@
+:host{display:block;position:relative}.actions{display:flex;align-items:center;gap:.5rem}.document{display:block;width:100%;height:clamp(32rem,76vh,66rem);border:1px solid var(--slds-g-color-border-base-1,#c9c9c9);border-radius:var(--slds-g-radius-border-2,.25rem);background:var(--slds-g-color-surface-container-1,#fff)}
