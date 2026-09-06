@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Test browser modules
-        run: node --test tests/*.test.mjs
+        run: npm test
       - name: Build reviewed static assets
         run: npm run build
       - uses: actions/configure-pages@v5

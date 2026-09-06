@@ -10,6 +10,7 @@ Checked 6–7 September 2026. All Salesforce deployment and live record checks t
 | Runtime Apex coverage | 371/394 measured locations covered, approximately 94.2%; coverage is not completeness |
 | Clean-source local tests | 12 passed, zero failures |
 | Clean-source build | Agreement, form/mapping, email and metadata inventory generated successfully |
+| Fresh Git checkout | All 170 tracked files reproduced without build drift; 12 tests passed |
 | Agreement bundle | Browser and Salesforce bundle hash remained `15412ad2ea3f687d53135501e6793d1db3124270d9de75759da4f70ba222dd0b` |
 | Original implementation test | Real Gold Web-to-Lead submission; vector retained, temporary PNG Base64 cleared, PNG/PDF Files created, received attachment matched the saved PDF |
 | Published-site test | Fresh synthetic Gold application entered and signed using real browser input on the new HTTPS GitHub Pages URL |
@@ -51,3 +52,5 @@ No hostile POST, quota exhaustion, destructive failure race, bulk asynchronous i
 The available GitHub credential permits repository/Pages publication but lacks the scope to create custom workflow files. Standard Pages branch publishing was configured using existing access. `gh-pages` contains only `public/`, while `main` contains the reviewed source. The inactive example at `docs/pages-workflow.example.yml` is an optional future automation alternative, not an installed workflow.
 
 For updates, commit the reviewed build outputs on main, push main, then run `scripts/publish-site.ps1` from a clean checkout with Node/npm and Git available. The helper tests/builds, checks for generated drift and publishes the public subtree without a force push. It never deploys Salesforce or changes the original NTE repository.
+
+The test runner discovers test files using Node rather than relying on shell wildcard expansion, so npm test works on Windows as well as Unix shells.
