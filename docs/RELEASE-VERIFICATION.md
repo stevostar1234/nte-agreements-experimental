@@ -1,5 +1,23 @@
 # Experimental release verification
 
+## Signature and clock release — 7 September 2026
+
+The new release removes false contour/capture limits, expands both signature fields to 131,072 characters, adds a 92,160-byte complete POST budget (10% below the measured native boundary), and uses Salesforce receipt time instead of rejecting browser clock claims. The requested small client visibility minimum is 12 logical pixels across **or** down. Existing saved evidence remains readable.
+
+- Megistos validation and deployment succeeded, with **47 Apex tests and zero failures**. Runtime coverage was **368/388 locations, approximately 94.85%**. The 14 added tests cover full field envelopes, malformed geometry and past/future/missing/malformed clock claims; maximum parser cases execute in a Queueable test context.
+- The final complete local suite passed **80/80 groups** with native Canvas tooling. Its full matrix contains **542 real native-PNG exports**: 531 within the complete request budget, nine below the requested visibility minimum, and two extreme dot grids beyond capacity. All 505 sufficiently visible seeded variants succeeded. This is synthetic stress coverage, not 542 real submissions or a physical-device test.
+- Two read-only native Apex probes checked maximum ASCII and quote-heavy accepted form values. Their final snapshots used **55,259 / 84,465 characters** of the 120,000 processing budget; no DML, jobs or emails were invoked. The form audit separately exercised 23 case groups and all 16,383 current non-empty package combinations.
+- Native transport probes measured **102,400 bytes accepted / 102,401 rejected with HTTP 400**. A full valid **92,160-byte** request completed Lead → PNG File → PDF File → email. The probes reused an existing unique reference to prevent additional intake records or emails.
+- Five positive native cases covered 64 strokes, 80 loops, 12,000-point jitter, the exact request budget, and all fourteen packages with Unicode/punctuation/long address data. Their vectors and downloaded PNG/PDF File hashes matched, temporary Base64 was cleared, signed/receipt times matched, and all five messages were found in Inbox with PDF attachments.
+- The real browser dot submission completed before the user subsequently requested a visible minimum. The final client now rejects that tiny mark, with explicit tests at the 12-pixel boundary.
+- Poppler and PDFium inspection confirmed visible complex signatures. It also found native PDF omissions for a Chinese character and clipping of a 500-character uninterrupted address token. Those broader findings remain **for review**, with proposals in [DELIVERY-EDGE-CASE-AUDIT.md](DELIVERY-EDGE-CASE-AUDIT.md); successful creation/email does not hide document correctness defects.
+- Browser asset URLs are versioned for this signature release. Reload an already open form after publication.
+- Agreement wording, current fees and the legal bundle hash are unchanged: `15412ad2ea3f687d53135501e6793d1db3124270d9de75759da4f70ba222dd0b`. No CAPTCHA or server vector/PNG identity comparison was added. No wider audit repair was deployed.
+
+No extra field was introduced: two existing fields were enlarged, and one new Apex test class raises the portable component count to **91**. [METADATA.md](METADATA.md) and the [technical walkthrough](TECHNICAL-WALKTHROUGH.md) describe the current state. The material below records the preceding branded-email/viewer release.
+
+## Earlier email and viewer release
+
 Checked 6–7 September 2026. All Salesforce deployment and live record checks targeted the verified **Megistos** org only. This public summary excludes actual contact addresses, record IDs, signature images and inbox attachments; raw evidence remains in the private working folder.
 
 ## Executed checks

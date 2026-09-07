@@ -386,14 +386,14 @@
   {
     "name": "Signature_Vector__c",
     "type": "LongTextArea",
-    "length": 32768,
+    "length": 131072,
     "label": "Signature Vector",
     "source": "Signature and agreement evidence"
   },
   {
     "name": "Signature_PNG_Base64__c",
     "type": "LongTextArea",
-    "length": 32768,
+    "length": 131072,
     "label": "Signature PNG Transport",
     "source": "Signature and agreement evidence"
   },

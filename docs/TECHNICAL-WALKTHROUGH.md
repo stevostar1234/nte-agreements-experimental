@@ -2,7 +2,7 @@
 
 This project turns the supplied partner/sponsor application into a Salesforce-native electronic agreement workflow. The external site is static HTML, CSS and JavaScript. Salesforce stores the submission, generates its PDF and emails the saved document. There is no paid signature/document-generation service or external application backend.
 
-This is an experimental implementation in **Megistos only**. Use [V1-ISSUES.md](V1-ISSUES.md) alongside this walkthrough: it records material defects and assumptions awaiting decisions. A demonstrated working journey is not a production-readiness certification.
+This is an experimental implementation in **Megistos only**. Use [V1-ISSUES.md](V1-ISSUES.md), the [delivery edge-case audit](DELIVERY-EDGE-CASE-AUDIT.md) and [signature boundary report](SIGNATURE-BOUNDARIES.md) alongside this walkthrough. They separate resolved problems, accepted operating decisions and proposed fixes awaiting review.
 
 ## A suggested team demonstration
 
@@ -62,9 +62,11 @@ The displayed agreement comes from a generated bundle shared with Apex. `config/
 
 `assets/signature-pad.js` handles Pointer Events and uses the locally bundled MIT-licensed **perfect-freehand 1.2.3** to generate smooth outlines. It uses real pen pressure when available and simulated pressure otherwise. Pointer capture and touch behavior prevent the page scrolling during an active stroke. Multiple disconnected strokes are retained.
 
-The stored master contains version 1, a fixed 600 × 180 coordinate viewport and controlled path strings. The schema accepts numeric `M`, `L`, `Q` and `Z` contours, not arbitrary SVG/HTML. Decimal precision is bounded. “Master” means the retained completed outline; raw high-frequency device events have already been resampled/rounded and are not retained as a lossless recording of the physical pen.
+The stored master contains version 1, a fixed 600 × 180 coordinate viewport and controlled path strings. The schema accepts numeric `M`, `L`, `Q` and `Z` contours, not arbitrary SVG/HTML. Completed contours are compacted within bounded subpixel tolerances. Only if necessary, a bounded local smoothing pass reduces dense subpixel jitter before rebuilding the outline. Raw samples, pressure and endpoints remain available in the current browser session, but the permanently retained master is the finalized displayed outline, not a lossless recording of physical pen movement. No stroke or sample-count cap silently drops input.
 
-The same browser paths paint a transparent PNG on an off-screen Canvas. Normal output is 1200 × 360; bounded smaller derivatives use 900 × 270 or 600 × 180. The vector and PNG Base64 each have a 28,000-character transport bound. This avoids unsupported Web-to-Lead file uploads and limits Apex heap/field use.
+The same finalized paths paint a transparent PNG on an off-screen Canvas. Output starts at 1200 × 360, then tries 900 × 270, 600 × 180, 450 × 135 and 300 × 90 as necessary. Both Salesforce text fields now hold 131,072 characters; client exports reserve 10%, allowing 117,964 each. More importantly, the actual Megistos Web-to-Lead endpoint accepted 102,400 encoded POST bytes and rejected 102,401. The form measures the complete native POST, including custom-field IDs, UTF-8, Base64 escaping and line endings, and enforces **92,160 bytes total**, retaining 10% transport headroom. Notes and all other fields count towards this total. The vector is not truncated to make a request fit.
+
+The client asks for a slightly larger mark if its overall width and height are both below 12 logical pixels. A short horizontal or vertical stroke passes; there is no handwriting, letter-shape or identity classifier. Older saved dots remain valid evidence and readable.
 
 **Trust qualification:** the honest client produces matching representations, but Apex does not independently prove they depict the same signature. Individually valid replacement PNG/vector payloads are possible (PUB-03). Neither a drawn name nor its hash verifies the identity of the person operating the browser.
 
@@ -74,7 +76,7 @@ At submit time, the client checks the form, signature and declarations; fills hi
 
 `Booking_Reference__c` is a unique case-insensitive external reference. Replaying an identical reference cannot create a second Lead with that reference. Completing another form with a new reference is a new application; this is not identity-based deduplication.
 
-The native endpoint provides a redirect, not a structured Lead ID or async outcome. Standard Web-to-Lead quotas, validation/duplicate rules and assignment rules still apply. The form's JavaScript honeypot is not a server-enforced anti-bot gate; PUB-04 remains open.
+The native endpoint provides a redirect, not a structured Lead ID or async outcome. Standard Web-to-Lead quotas, validation/duplicate rules and assignment rules still apply. The requested design retains the JavaScript honeypot without CAPTCHA; its pre-payment quota implications are recorded in PUB-04 and the delivery audit.
 
 ### 4. Lead insert and evidence capture
 
@@ -86,9 +88,9 @@ A Flow wrapper was intentionally omitted: insert-time evidence protection, binar
 
 ### 5. First async transaction: signature File
 
-`NTEAgreementWorker`, stage `Signature`, validates bounded JSON shape, contour commands/coordinates, minimum signature geometry and PNG Base64/header/dimensions. `NTEAgreementTemplate.completeEvidence` checks version/hash, event, packages, configured totals, required identity/contact fields, declarations and the browser timestamp window.
+`NTEAgreementWorker`, stage `Signature`, validates bounded JSON shape, controlled contour commands/coordinates and PNG Base64/header/dimensions. It does not judge handwriting. `NTEAgreementTemplate.completeEvidence` checks version/hash, event, packages, configured totals, required identity/contact fields and declarations. Salesforce receipt time supplies the signed time. Browser time is optional untrusted audit text; missing, malformed, very old or future values do not invalidate processing.
 
-It generates the controlled agreement HTML with escaped merge values. The full snapshot contains application data, legal name/contact email, selected packages/fee, declared signing time, receipt time, agreement version/hash and frozen HTML. Signature vector and PNG hashes are added; the exact serialised snapshot is hashed. The snapshot bound is 120,000 characters.
+It generates the controlled agreement HTML with escaped merge values. The full snapshot contains application data, legal name/contact email, selected packages/fee, Salesforce signing/receipt time, the optional browser clock claim, agreement version/hash and frozen HTML. Signature vector and PNG hashes are added; the exact serialised snapshot is hashed. The snapshot bound is 120,000 characters.
 
 `NTEAgreementGateway.createFile` inserts a `ContentVersion` with `VersionData` from decoded Base64 and `FirstPublishLocationId` set to the Lead. Salesforce creates the File/link. On commit the status is `Signature Saved` and the temporary Base64 field is cleared. The vector remains permanently on the Lead.
 
@@ -120,7 +122,7 @@ Megistos's `.pdf` behavior was changed from **Hybrid** to **Execute in Browser**
 
 ## Metadata and access boundary
 
-The portable core contains **90 metadata components**: 67 Lead fields, 13 Apex classes (8 runtime, 4 test classes and a test-data factory), 1 trigger, 2 LWC bundles, 2 permission sets, 1 custom permission, 2 Static Resources, 1 Lightning app and 1 record page. [METADATA.md](METADATA.md) lists every field/API name/type/limit.
+The portable core contains **91 metadata components**: 67 Lead fields, 14 Apex classes (8 runtime, 5 test classes and a test-data factory), 1 trigger, 2 LWC bundles, 2 permission sets, 1 custom permission, 2 Static Resources, 1 Lightning app and 1 record page. [METADATA.md](METADATA.md) lists every field/API name/type/limit.
 
 48 custom fields reproduce the supplied form mappings; 19 are new agreement/evidence fields. Standard Company, FirstName, LastName, Title, Email and Phone are reused. A future org may already have equivalent fields: reconcile them before deploying this full set.
 
@@ -158,11 +160,11 @@ No recurring monitoring, reconciliation job or automatic retry service has been 
 
 ## Before a customer sandbox or production release
 
-1. Decide and resolve/accept the issue register with the client's architects, especially server-generated-state trust, signature representation integrity, native CAPTCHA, catalogue consistency and async recovery.
+1. Review the current issue register with the client's architects, especially generated-state trust, document rendering, quota handling and async recovery. Carry forward the recorded PNG/vector, honeypot and seasonal-release decisions.
 2. Approve complete terms, schedules, VAT, event logistics, privacy notices, signature authority process and retention. Determine legal suitability with the client's advisers; this project does not certify it.
 3. Inspect the intended org's fields, automation, access, limits and API/native PDF behavior. Reconcile mappings and integrate with its trigger/automation conventions.
 4. Use a separate target configuration. The provided build/deploy helper deliberately pins Megistos; do not casually remove that guard. Generate the destination Web-to-Lead IDs/endpoint and test the real POST.
-5. Configure native reCAPTCHA v2, verified sender/domain/DKIM, deliverability, owner assignment, least-privilege File access and the inline-PDF policy. Avoid conflicting early auto-responses.
+5. Configure a verified sender/domain/DKIM, deliverability, owner assignment, least-privilege File access and the inline-PDF policy. Retain the requested honeypot policy and monitor its quota exposure. Avoid conflicting early auto-responses.
 6. Test real devices, maximum payloads, restricted users, multi-package agreements, actual inboxes and attachments, duplicate/retry paths, failure isolation, two-record/bulk jobs and Lead conversion/deletion recovery.
 7. Assign operational ownership and monitoring, back up evidence, and rehearse version releases. Drain pending work or implement overlapping versions; the website and Salesforce deployments are not atomic.
 

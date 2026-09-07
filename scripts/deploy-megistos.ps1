@@ -16,7 +16,7 @@ try {
     }
     Write-Host "Verified Megistos: $($taskOrg.Id) ($($taskOrg.OrganizationType))."
     if ($Mode -eq 'Check') { return }
-    $taskArguments = @('project','deploy','start','--target-org',$taskTarget.targetAlias,'--source-dir','force-app/main/default','--test-level','RunSpecifiedTests','--tests','NTEAgreementSignatureTest','--tests','NTEAgreementWorkflowTest','--tests','NTEAgreementOperationsTest','--tests','NTEAgreementPresentationTest','--wait','10','--json')
+    $taskArguments = @('project','deploy','start','--target-org',$taskTarget.targetAlias,'--source-dir','force-app/main/default','--test-level','RunSpecifiedTests','--tests','NTEAgreementSignatureTest','--tests','NTEAgreementWorkflowTest','--tests','NTEAgreementOperationsTest','--tests','NTEAgreementPresentationTest','--tests','NTEAgreementAcceptanceTest','--wait','10','--json')
     if ($Mode -eq 'Validate') { $taskArguments += '--dry-run' }
     $taskRaw = & sf @taskArguments
     $taskExitCode = $LASTEXITCODE

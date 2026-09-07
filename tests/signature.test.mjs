@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {SignaturePad} from '../public/assets/signature-pad.js';
-import {parseVector,serializePaths} from '../public/assets/signature-geometry.js';
+import {MAX_VECTOR,parseVector,serializePaths} from '../public/assets/signature-geometry.js';
 
 // These fixtures exercise pointer and geometry behaviour. Real browser Canvas/PNG/PDF
 // rendering is separately verified by the saved Web-to-Lead end-to-end artifacts.
@@ -51,12 +51,14 @@ test('pen pressure changes the outline while mouse pressure is simulated',()=>{
 test('secondary pointers and right mouse clicks do not add marks',()=>{
   const {pad}=setup();pad.start({...pointer(20,30),isPrimary:false});pad.start({...pointer(20,30),button:2});assert.equal(pad.hasInk,false);
 });
-test('tap, short mark and unfinished strokes cannot be submitted',()=>{
-  const {pad}=setup();pad.start(pointer(50,80));assert.throws(()=>pad.export(),/Finish/);pad.finish(pointer(50,80));assert.throws(()=>pad.export(),/full signature/);
-  pad.start(pointer(50,80));pad.move(pointer(53,82));pad.finish(pointer(55,83));assert.throws(()=>pad.export(),/full signature/);
+test('a tiny mark needs more visible span but a small line can be submitted',()=>{
+  const {pad}=setup();pad.start(pointer(50,80));assert.throws(()=>pad.export(),/Finish/);pad.finish(pointer(50,80));assert.throws(()=>pad.export(),/slightly larger mark/);
+  pad.start(pointer(50,80));pad.move(pointer(53,82));pad.finish(pointer(55,83));assert.throws(()=>pad.export(),/slightly larger mark/);
+  pad.start(pointer(50,80));pad.finish(pointer(62,80));assert.equal(parseVector(pad.export().vector).paths.length,3);
 });
-test('cancelled pointer does not commit a partial stroke',()=>{
-  const {pad,status}=setup();pad.start(pointer(50,80,'touch'));pad.move(pointer(180,90,'touch'));pad.cancel();assert.equal(pad.paths().length,0);assert.match(status.textContent,/interrupted/);
+test('cancelled pointer keeps the captured mark available to submit or undo',()=>{
+  const {pad,status}=setup();pad.start(pointer(50,80,'touch'));pad.move(pointer(180,90,'touch'));pad.cancel();assert.equal(pad.paths().length,1);assert.match(status.textContent,/kept/);
+  assert.doesNotThrow(()=>pad.export());
 });
 test('viewport resizing preserves completed geometry',()=>{
   const {pad,svg}=setup();stroke(pad);const original=pad.export().vector;svg.getBoundingClientRect=()=>({left:20,top:30,width:300,height:90});
@@ -65,14 +67,15 @@ test('viewport resizing preserves completed geometry',()=>{
 test('viewport edges are clamped and remain valid contours',()=>{
   const {pad}=setup();pad.start(pointer(-10,-10));for(let i=0;i<=60;i++)pad.move(pointer(i*10,90+Math.sin(i/2)*95));pad.finish(pointer(620,190));assert.doesNotThrow(()=>parseVector(pad.export().vector));
 });
-test('excessive point and stroke counts are bounded',()=>{
-  const {pad}=setup();pad.start(pointer(10,30));for(let i=1;i<1800;i++)pad.move(pointer(30+(i%500),70+Math.sin(i)*30));assert.equal(pad.active.points.length,1200);pad.cancel();
-  for(let i=0;i<24;i++)stroke(pad);pad.start(pointer(10,30));assert.equal(pad.active,null);assert.throws(()=>pad.export(),/large|complex/);
+test('long strokes are not silently truncated and more than24 strokes can be captured',()=>{
+  const {pad}=setup();pad.start(pointer(10,30));for(let i=1;i<1800;i++)pad.move(pointer(30+(i%500),70+Math.sin(i)*30));assert.equal(pad.active.points.length,1800);pad.clear();
+  for(let i=0;i<30;i++)stroke(pad);assert.equal(pad.strokes.length,30);assert.doesNotThrow(()=>pad.export());
 });
 test('malformed, executable and oversized vectors are rejected',()=>{
   const {pad}=setup();stroke(pad);const valid=JSON.parse(pad.export().vector);
-  for(const changes of [{version:2},{width:601},{paths:['<svg onload=alert(1)>']},{extra:1},{paths:Array(25).fill(valid.paths[0])}])assert.throws(()=>parseVector(JSON.stringify({...valid,...changes})));
-  assert.throws(()=>parseVector(' '.repeat(28001)));assert.throws(()=>serializePaths(['M 0 0 L 999 999 Z']));
+  for(const changes of [{version:2},{width:601},{paths:['<svg onload=alert(1)>']},{extra:1},{paths:['M 0 0 Z']}])assert.throws(()=>parseVector(JSON.stringify({...valid,...changes})));
+  assert.doesNotThrow(()=>parseVector(JSON.stringify({...valid,paths:Array(25).fill(valid.paths[0])})));
+  assert.throws(()=>parseVector(' '.repeat(MAX_VECTOR+1)));assert.throws(()=>serializePaths(['M 0 0 L 999 999 Z']));
 });
 test('internal LWC and public capture use the same geometry validator',()=>{
   assert.equal(fs.readFileSync(new URL('../public/assets/signature-geometry.js',import.meta.url),'utf8'),fs.readFileSync(new URL('../force-app/main/default/lwc/nteSignatureGeometry/nteSignatureGeometry.js',import.meta.url),'utf8'));

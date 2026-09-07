@@ -1,0 +1,38 @@
+  // One entry list drives both the size check and the native Web-to-Lead form.
+  function submissionEntries(form, grouped) {
+    var entries = [["oid", config.orgId], ["retURL", resolveReturnUrl(form)],
+      ["lead_source", form.dataset.leadSource || "Web"], ["useDefaultRule", form.dataset.useDefaultRule === "0" ? "0" : "1"]];
+    Object.keys(grouped).forEach(function (api) {
+      var name = /__c$/.test(api) ? config.customFieldIds[api] : (standardNames[api] || api);
+      entries.push([name, grouped[api].join(";")]);
+    });
+    return entries;
+  }
+
+  function submissionBytes(form, overrides) {
+    var grouped = collectFields(form);
+    Object.keys(overrides || {}).forEach(function (api) { grouped[api] = [overrides[api]]; });
+    var encoded = new URLSearchParams();
+    submissionEntries(form, grouped).forEach(function (entry) {
+      // Native HTML form submission normalises line endings before UTF-8 form encoding.
+      encoded.append(String(entry[0]).replace(/\r\n|\r|\n/g, "\r\n"), String(entry[1]).replace(/\r\n|\r|\n/g, "\r\n"));
+    });
+    return encoded.toString().length;
+  }
+
+  function submitToSalesforce(form, grouped) {
+    var postForm = document.createElement("form");
+    postForm.method = "post";
+    postForm.acceptCharset = "UTF-8";
+    postForm.action = config.endpoint;
+    postForm.hidden = true;
+    submissionEntries(form, grouped).forEach(function (entry) {
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = entry[0];
+      input.value = entry[1];
+      postForm.appendChild(input);
+    });
+    document.body.appendChild(postForm);
+    postForm.submit();
+  }

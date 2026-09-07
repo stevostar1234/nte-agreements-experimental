@@ -1,4 +1,18 @@
-# V1 functional review — decisions pending
+# V1 functional review — decision history and current status
+
+## Update: 7 September 2026
+
+The original findings below are retained for traceability. The subsequent [document/email edge-case audit](DELIVERY-EDGE-CASE-AUDIT.md) is the current review entry point; it records new reproducible browser, PDF-rendering and recovery findings with proposed fixes and downstream consequences.
+
+- **Resolved:** PUB-05 browser-clock rejection. Salesforce receipt time now supplies signing time; skewed, absent and malformed browser clocks passed the workflow. False signature contour rejection, silent capture truncation and an actual Web-to-Lead request-size limit were also fixed; see [the signature report](SIGNATURE-BOUNDARIES.md).
+- **User decisions recorded:** PUB-02/PLAT-01 remain developer-coordinated annual maintenance; PUB-03 remains independent PNG/vector acceptance with the converter tested; PUB-04 retains a honeypot without CAPTCHA; PUB-06 uses closed-form annual releases and manual exceptional handling. These choices do not create automatic recovery from other failures.
+- **PUB-01 remains for review:** a manufactured processed Lead can skip the processor entirely. Its effect can be **no PDF and no email ever**, not simply a temporarily misleading status. Normal discriminator-bearing form submissions undergo initialization.
+- **PUB-07/native acknowledgment remains accepted:** a redirect is not a confirmed Lead receipt, and native email acceptance is not proof of inbox delivery. The current trial's reported 15/day email allowance is a separate, tangible delivery constraint.
+- **ASYNC-01/02/03 remain conditional review items:** independent normal submissions use separate three-job chains. The current audit distinguishes that path from bulk imports, other automation, cancelled jobs and deleted Files.
+
+Broader audit fixes have deliberately not been applied pending the user's review. Read the dated sections as historical evidence where their original proposed decision differs from these later instructions.
+
+## Original review
 
 Reviewed 6–7 September 2026 by three independent agents covering public submission/evidence, asynchronous processing, and Salesforce access/portability. This register deliberately excludes cosmetic wording and style findings. It records the implementation as reviewed; the issues below have **not** been silently fixed or accepted on the client's behalf.
 
@@ -26,7 +40,7 @@ P1 = material correctness, integrity or operational exposure. P2 = important mai
 ## Acceptance gaps, not additional confirmed defects
 
 - Test a real non-administrator: Lead owner, shared read-only record, unshared record, Viewer, Operator, and removed File link. Existing Apex user fixtures inherit the deploying administrator profile. LDS/user-mode code is present, but an administrator's successful screen is not an ordinary-user access test.
-- Exercise physical touch/stylus devices, maximum-size signatures and maximum form lengths through the real endpoint. Local Pointer Events tests use a DOM/Canvas stub.
+- Physical touch/stylus devices remain an acceptance gap. The September 7 follow-up added real native PNG stress testing and bounded real Web-to-Lead capacity/lifecycle tests; see the newer report rather than the original stub-only scope.
 - Native desktop PDF display has a Salesforce-supported iframe path. Browser policies/mobile PDF handling can differ; retain **Open PDF** as a fallback. The exact saved ContentVersion is pinned.
 - Decide where evidence and operations live after Lead conversion. Files can transfer, but this LWC and processing fields remain Lead-specific.
 - Decide retention, File deletion, backup and recovery. Hashes are not a write-once archive or a cryptographic signing certificate.

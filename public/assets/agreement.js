@@ -1,4 +1,7 @@
-import { SignaturePad } from './signature-pad.js';
+import { SignaturePad } from './signature-pad.js?v=20260907';
+// Measured native Web-to-Lead POST ceiling: 102,400 encoded bytes; retain 10% headroom.
+export const MAX_SUBMISSION_BYTES=92160;
+const FIELD_BUDGET=117964;
 const bundle=window.NTE_AGREEMENT, config=bundle.config;
 const form=document.querySelector('form[data-web-to-lead]');
 const field=api=>form.querySelector(`[data-sf-field="${api}"]`);
@@ -44,12 +47,17 @@ form.addEventListener('change',handleChange);
 window.NTESignature={
   prepare(){
     if(!field('Agreement_Authority__c').checked || !field('Agreement_Accepted__c').checked)throw new Error('Please confirm your authority and accept the agreement.');
-    const captured=pad.export();
-    field('Signature_Vector__c').value=captured.vector;
-    field('Signature_PNG_Base64__c').value=captured.base64;
     field('Agreement_Version__c').value=config.version;
     field('Agreement_Config_Hash__c').value=window.NTE_AGREEMENT_HASH;
-    field('Agreement_Client_Time__c').value=new Date().toISOString();
+    const browserTime=new Date();
+    field('Agreement_Client_Time__c').value=Number.isFinite(browserTime.getTime())?browserTime.toISOString():'';
+    const captured=pad.export({maxVector:FIELD_BUDGET,maxPng:FIELD_BUDGET,
+      fits:candidate=>window.NTEFormUtils.submissionBytes(form,{
+        Signature_Vector__c:candidate.vector,Signature_PNG_Base64__c:candidate.base64
+      })<=MAX_SUBMISSION_BYTES});
+    field('Signature_Vector__c').value=captured.vector;
+    field('Signature_PNG_Base64__c').value=captured.base64;
+    if(window.NTEFormUtils.submissionBytes(form)>MAX_SUBMISSION_BYTES)throw new Error('This application is too large to send. Please shorten any long notes or undo some signature marks and try again.');
     sessionStorage.setItem('nteAgreementReference',value('Booking_Reference__c'));
     return true;
   },

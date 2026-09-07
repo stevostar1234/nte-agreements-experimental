@@ -24,8 +24,8 @@ const fields = names.map(name => {
   return {name,type,length,label:name.replace(/__c$/,'').replaceAll('_',' ').slice(0,40), source:'Existing partner form', unique:name==='Booking_Reference__c'};
 });
 const evidence = [
-  ['Signature_Vector__c','LongTextArea',32768,'Signature Vector'],
-  ['Signature_PNG_Base64__c','LongTextArea',32768,'Signature PNG Transport'],
+  ['Signature_Vector__c','LongTextArea',131072,'Signature Vector'],
+  ['Signature_PNG_Base64__c','LongTextArea',131072,'Signature PNG Transport'],
   ['Agreement_Authority__c','Checkbox',0,'Authority Confirmed'],
   ['Agreement_Accepted__c','Checkbox',0,'Agreement Accepted'],
   ['Agreement_Version__c','Text',80,'Agreement Version'],

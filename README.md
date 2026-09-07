@@ -6,6 +6,8 @@ The supplied NTE partner/sponsor form, electronic signature capture, Salesforce-
 - [View the branded email example](https://stevostar1234.github.io/nte-agreements-experimental/email-preview.html)
 - [Technical walkthrough and presentation guide](docs/TECHNICAL-WALKTHROUGH.md)
 - [V1 functional issues — decisions pending](docs/V1-ISSUES.md)
+- [Document and email edge-case audit — proposed fixes for review](docs/DELIVERY-EDGE-CASE-AUDIT.md)
+- [Signature capacity, visibility and test results](docs/SIGNATURE-BOUNDARIES.md)
 - [Exact metadata and field inventory](docs/METADATA.md)
 - [Verification results and test limits](docs/RELEASE-VERIFICATION.md)
 
@@ -56,7 +58,7 @@ Salesforce CLI authentication is local and is never committed or used by GitHub 
 
 The helper checks the exact approved Megistos org ID and name, defaults to validation, uses an explicit target and runs four Apex test classes. It does not assign permissions, deploy unrelated layout metadata or change another org/default org.
 
-The portable core contains 90 components including 67 Lead fields, 8 runtime Apex classes, 4 test classes plus their factory, the trigger, two LWC bundles, two permission sets, a custom permission, two Static Resources, an app and a record page. Exact names are in the inventory.
+The portable core contains 91 components including 67 Lead fields, 8 runtime Apex classes, 5 test classes plus their factory, the trigger, two LWC bundles, two permission sets, a custom permission, two Static Resources, an app and a record page. Exact names are in the inventory.
 
 Existing Megistos setup: the approved test user has the Operator permission; the NTE app has its Lead page; the Lead layout has Files. PDF display is set to **Execute in Browser** for `.pdf` (an org-wide PDF behavior setting). Other file types were not changed. Ordinary-user access and other browsers still need the acceptance checks in the issue register.
 
@@ -66,6 +68,6 @@ GitHub Pages serves the `gh-pages` branch, containing only the reviewed `public/
 
 Public org/field IDs in the form are normal Web-to-Lead routing identifiers, not credentials. Actual signatures, inbox attachments, raw org metadata, authentication files and original Word files are excluded by an explicit source-export allowlist and ignore rules. Only necessary sanitised build inputs remain under `reference/`.
 
-Before a client sandbox/production rollout, resolve the functional review, reconcile destination fields/automation, complete the contract, configure native CAPTCHA and an authenticated client sender, test least-privilege File access/device behavior and agree monitoring/retention/conversion. Use a separate reviewed target configuration rather than removing Megistos's guard casually. No other org has been deployed to by this project.
+Before a client sandbox/production rollout, review the delivery audit, reconcile destination fields/automation, complete the contract, configure an authenticated client sender, test least-privilege File access/device behavior and agree monitoring/retention/conversion. The requested design retains a honeypot without CAPTCHA; document and monitor the resulting quota exposure. Use a separate reviewed target configuration rather than removing Megistos's guard casually. No other org has been deployed to by this project.
 
 Megistos is an Enterprise Edition trial with recorded expiry 2 May 2027. Keep the source and retained evidence independently of the trial. Licence/branding details are in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

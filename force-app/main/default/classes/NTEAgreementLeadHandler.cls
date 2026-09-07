@@ -5,6 +5,7 @@ public inherited sharing class NTEAgreementLeadHandler {
 
     /** Takes a small snapshot in the insert transaction; rendering is deferred to async Apex. */
     public static void capture(List<Lead> records) {
+        Datetime receivedAt = Datetime.now();
         for (Lead applicant : records) {
             if (!isAgreement(applicant)) { continue; }
             NTEAgreementTemplate.Evidence evidence = new NTEAgreementTemplate.Evidence();
@@ -15,14 +16,14 @@ public inherited sharing class NTEAgreementLeadHandler {
                 evidence.application.put(fieldName, value == null ? '' : String.valueOf(value));
             }
             evidence.clientTime = applicant.Agreement_Client_Time__c;
-            evidence.receivedTime = Datetime.now().formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'');
+            evidence.receivedTime = receivedAt.formatGmt('yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'');
             evidence.version = applicant.Agreement_Version__c;
             evidence.configHash = applicant.Agreement_Config_Hash__c;
             evidence.reference = applicant.Booking_Reference__c;
             evidence.authority = applicant.Agreement_Authority__c;
             evidence.accepted = applicant.Agreement_Accepted__c;
             applicant.Agreement_Snapshot__c = JSON.serialize(evidence);
-            applicant.Agreement_Received_At__c = Datetime.now();
+            applicant.Agreement_Received_At__c = receivedAt;
             applicant.Agreement_Status__c = 'Received';
             applicant.Agreement_Error__c = null;
             applicant.Agreement_Attempts__c = 0;

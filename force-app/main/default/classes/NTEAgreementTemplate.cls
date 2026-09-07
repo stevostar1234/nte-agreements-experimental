@@ -60,14 +60,9 @@ public inherited sharing class NTEAgreementTemplate {
         if (!Pattern.matches('NTE-[0-9]{13}-[A-Z2-9]{8}', evidence.reference ?? '')) {
             throw new AgreementException('The application reference is invalid.');
         }
-        if (!Pattern.matches('\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z', evidence.clientTime ?? '')) {
-            throw new AgreementException('The signing timestamp is invalid.');
-        }
-        Datetime signedAt = Datetime.valueOfGmt(evidence.clientTime.substring(0, 19).replace('T', ' '));
-        Datetime receivedAt = applicant.Agreement_Received_At__c;
-        if (signedAt > receivedAt.addMinutes(10) || signedAt < receivedAt.addDays(-1)) {
-            throw new AgreementException('The signing timestamp is outside the permitted submission window.');
-        }
+        // Receipt time is captured by Salesforce at insert, so clock skew and delivery delays cannot reject consent.
+        // The untrusted browser clock remains optional audit data and is deliberately never parsed.
+        Datetime signedAt = applicant.Agreement_Received_At__c ?? Datetime.now();
         applicant.Agreement_Signed_At__c = signedAt;
         evidence.signedTime = signedAt.format('d MMMM yyyy, HH:mm:ss z', 'Europe/London');
         Set<String> selected = new Set<String>(requiredValue(evidence, 'Sponsor_Package__c').split(';'));

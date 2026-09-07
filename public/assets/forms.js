@@ -120,7 +120,7 @@
       return londonDateParts.find(function (part) { return part.type === partName; }).value;
     }).join("-");
     document.querySelectorAll('[data-sf-field="Declaration_Date__c"]').forEach(function (control) {
-      control.max = londonDate;
+      control.removeAttribute("max");
       if (config.declarationMinDate) control.min = config.declarationMinDate;
     });
     document.querySelectorAll('[data-sf-field="Date_of_Birth__c"]').forEach(function (control) {
@@ -203,16 +203,19 @@
 
   function bookingReference() {
     var alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    var bytes = new Uint8Array(8);
+    var bytes = new Uint8Array(21);
     if (window.crypto && window.crypto.getRandomValues) {
       window.crypto.getRandomValues(bytes);
     } else {
       bytes.forEach(function (_, index) { bytes[index] = Math.floor(Math.random() * 256); });
     }
-    var suffix = Array.prototype.map.call(bytes, function (value) {
+    var suffix = Array.prototype.map.call(bytes.slice(13), function (value) {
       return alphabet.charAt(value % alphabet.length);
     }).join("");
-    return "NTE-" + Date.now() + "-" + suffix;
+    var digits = Array.prototype.map.call(bytes.slice(0, 13), function (value, index) {
+      return String(index === 0 ? 1 + value % 9 : value % 10);
+    }).join("");
+    return "NTE-" + digits + "-" + suffix;
   }
 
   function populateSystemFields(form) {
@@ -600,29 +603,45 @@
     }
   }
 
+  // One entry list drives both the size check and the native Web-to-Lead form.
+  function submissionEntries(form, grouped) {
+    var entries = [["oid", config.orgId], ["retURL", resolveReturnUrl(form)],
+      ["lead_source", form.dataset.leadSource || "Web"], ["useDefaultRule", form.dataset.useDefaultRule === "0" ? "0" : "1"]];
+    Object.keys(grouped).forEach(function (api) {
+      var name = /__c$/.test(api) ? config.customFieldIds[api] : (standardNames[api] || api);
+      entries.push([name, grouped[api].join(";")]);
+    });
+    return entries;
+  }
+
+  function submissionBytes(form, overrides) {
+    var grouped = collectFields(form);
+    Object.keys(overrides || {}).forEach(function (api) { grouped[api] = [overrides[api]]; });
+    var encoded = new URLSearchParams();
+    submissionEntries(form, grouped).forEach(function (entry) {
+      // Native HTML form submission normalises line endings before UTF-8 form encoding.
+      encoded.append(String(entry[0]).replace(/\r\n|\r|\n/g, "\r\n"), String(entry[1]).replace(/\r\n|\r|\n/g, "\r\n"));
+    });
+    return encoded.toString().length;
+  }
+
   function submitToSalesforce(form, grouped) {
     var postForm = document.createElement("form");
     postForm.method = "post";
+    postForm.acceptCharset = "UTF-8";
     postForm.action = config.endpoint;
     postForm.hidden = true;
-    function append(name, value) {
+    submissionEntries(form, grouped).forEach(function (entry) {
       var input = document.createElement("input");
       input.type = "hidden";
-      input.name = name;
-      input.value = value;
+      input.name = entry[0];
+      input.value = entry[1];
       postForm.appendChild(input);
-    }
-    append("oid", config.orgId);
-    append("retURL", resolveReturnUrl(form));
-    append("lead_source", form.dataset.leadSource || "Web");
-    append("useDefaultRule", form.dataset.useDefaultRule === "0" ? "0" : "1");
-    Object.keys(grouped).forEach(function (api) {
-      var name = /__c$/.test(api) ? config.customFieldIds[api] : (standardNames[api] || api);
-      append(name, grouped[api].join(";"));
     });
     document.body.appendChild(postForm);
     postForm.submit();
   }
+
 
   function enableForms() {
     document.querySelectorAll("form[data-web-to-lead]").forEach(function (form) {
@@ -716,6 +735,7 @@
   enableForms();
 
   window.NTEFormUtils = {
+    submissionBytes: submissionBytes,
     eventCodeFor: eventCodeFor,
     resolveEventCode: resolveEventCode,
     bookingReference: bookingReference,

@@ -50,8 +50,20 @@ const signature=`<div class="checkline"><input id="partner-authority" type="chec
 html=html.replace('        <div class="button-row"><button class="button" type="submit">',signature+'\n        <div class="button-row"><button class="button" type="submit">');
 html=html.replace('</head>','  <link rel="stylesheet" href="assets/agreement.css">\n</head>');
 html=html.replace('</body>','<script src="assets/agreement-bundle.js"></script><script type="module" src="assets/agreement.js"></script>\n</body>');
+// Version the changed entry scripts so an existing Pages cache cannot restore the old signature limits.
+html=html.replace(/(src="assets\/(?:config|forms|agreement|agreement-bundle)\.js)"/g,'$1?v=20260907"');
 write('public/partner-sponsor-application.html',html);
 let forms=read('reference/site-assets/forms.js');
+// A user's device clock is not a trustworthy limit on their declaration or a source of reference validity.
+forms=forms.replace('      control.max = londonDate;', '      control.removeAttribute("max");');
+forms=forms.replace('var bytes = new Uint8Array(8);', 'var bytes = new Uint8Array(21);');
+forms=forms.replace('Array.prototype.map.call(bytes, function (value)', 'Array.prototype.map.call(bytes.slice(13), function (value)');
+forms=forms.replace('return "NTE-" + Date.now() + "-" + suffix;', `var digits = Array.prototype.map.call(bytes.slice(0, 13), function (value, index) {
+      return String(index === 0 ? 1 + value % 9 : value % 10);
+    }).join("");
+    return "NTE-" + digits + "-" + suffix;`);
+forms=forms.replace(/  function submitToSalesforce\(form, grouped\) \{[\s\S]*?\n  \}\n\n  function enableForms/,read('scripts/form-transport.js.txt')+'\n\n  function enableForms');
+forms=forms.replace('    eventCodeFor: eventCodeFor,','    submissionBytes: submissionBytes,\n    eventCodeFor: eventCodeFor,');
 forms=forms.replace('        var grouped = collectFields(form);',`        if (!window.NTESignature) { setStatus(form, "The signature pad could not load. Please refresh the page and try again.", "error"); return; }
         try { window.NTESignature.prepare(form); }
         catch (error) { setStatus(form, error.message, "error"); document.querySelector('[data-signature-pad]').focus(); return; }
