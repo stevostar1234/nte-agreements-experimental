@@ -1,7 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {submissionFixture,syntheticApplication} from './helpers/form-transport-harness.mjs';
 import {runCase,signatureCases,nativeCanvas} from './helpers/signature-stress-harness.mjs';
+
+test('all coupled form entry assets share the release URL even when the source had older query strings',()=>{
+  const html=fs.readFileSync(new URL('../public/partner-sponsor-application.html',import.meta.url),'utf8');
+  const urls=[...html.matchAll(/src="(assets\/(?:config|forms|agreement|agreement-bundle)\.js[^\"]*)"/g)].map(match=>new URL(match[1],'https://example.invalid/'));
+  assert.equal(urls.length,4);
+  assert.equal(new Set(urls.map(url=>url.searchParams.get('v'))).size,1);
+  assert.ok(urls.every(url=>url.searchParams.get('v')));
+});
 
 test('POST measurement accounts for field IDs, UTF-8, Base64 escapes, line endings and grouped values',()=>{
   const values={Company:'A&B + 龍',Invoice_Address__c:'First\nSecond\rThird\r\nFourth',

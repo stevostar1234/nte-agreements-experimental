@@ -51,7 +51,7 @@ html=html.replace('        <div class="button-row"><button class="button" type="
 html=html.replace('</head>','  <link rel="stylesheet" href="assets/agreement.css">\n</head>');
 html=html.replace('</body>','<script src="assets/agreement-bundle.js"></script><script type="module" src="assets/agreement.js"></script>\n</body>');
 // Version the changed entry scripts so an existing Pages cache cannot restore the old signature limits.
-html=html.replace(/(src="assets\/(?:config|forms|agreement|agreement-bundle)\.js)"/g,'$1?v=20260907"');
+html=html.replace(/(src="assets\/(?:config|forms|agreement|agreement-bundle)\.js)(?:\?[^\"]*)?"/g,'$1?v=20260907"');
 write('public/partner-sponsor-application.html',html);
 let forms=read('reference/site-assets/forms.js');
 // A user's device clock is not a trustworthy limit on their declaration or a source of reference validity.
