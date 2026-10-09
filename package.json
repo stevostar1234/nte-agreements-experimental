@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node scripts/test.mjs",
-    "build": "node scripts/build-agreement.mjs && node scripts/build-local.mjs && node scripts/build-email.mjs"
+    "build": "node scripts/build-agreement.mjs && node scripts/build-local.mjs && node scripts/build-email.mjs && node scripts/build-delivery-experiment.mjs"
   },
   "license": "UNLICENSED"
 }

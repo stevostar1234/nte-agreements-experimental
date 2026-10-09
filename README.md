@@ -11,7 +11,11 @@ The supplied NTE partner/sponsor form, electronic signature capture, Salesforce-
 - [Exact metadata and field inventory](docs/METADATA.md)
 - [Verification results and test limits](docs/RELEASE-VERIFICATION.md)
 
-## Team evaluation
+## Delivery partner review experiment (9 October 2026)
+
+[Open the delivery partner review](https://stevostar1234.github.io/nte-agreements-experimental/experiments/delivery-partners/): two entry links to one copy of the latest main-repository form. This separate experiment is **browser review only**, with no Salesforce records or emails. [Design, integration notes and test results](docs/DELIVERY-PARTNER-EXPERIMENT.md).
+
+## Team evaluation of the signature experiment
 
 Use synthetic applicant/company details and an email inbox you control. **The form really creates a Lead in Megistos and emails a signed PDF.** The GitHub Pages site is public, without a team access gate. This experiment is not approved for real client agreements: the V1 issue register includes material submission-integrity, bot-control, configuration and async-recovery decisions.
 
